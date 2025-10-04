@@ -1,10 +1,10 @@
-# Unity LiMiTools
-LiMiTools is the first package developed by LiMi that enables you to quickly use the Editor tool.
+# LiMiTools-for-Unity
+LiMiTools for Unity是LiMi开发的第一个Unity编辑器工具包
 
 ## Prerequisites
 ### Unity 6000.0.50
-This package is under development and uses Unity6000.0.50
+该软件包正在开发中，使用Unity6000.0.50
 
 ## Getting Started
-User manuals can be found here (https://docs.unity3d.com/Manual/UISystem.html).
-# LiMiTools-for-Unity
+用户手册可以在这里找到（https://github.com/LiMiSensei/LiMiTools-for-Unity/blob/main/Editor/%E8%AF%B4%E6%98%8E.pur）
+
