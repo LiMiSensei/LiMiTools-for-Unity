@@ -1,0 +1,30 @@
+{
+"name": "com.unity.limitools",
+"displayName": "LiMi Tools",
+"description": "This is a tool test package",
+"version": "1.0.0",
+"unity": "2022.3",
+
+"license": "MIT", 
+"documentationUrl": "https://baidu.com/",
+
+  "keywords": [
+    "search",
+    "searcher"
+  ],
+  
+  
+"author": {
+    "name": "LiMi",
+    "email": "AreYea@yeah.net",
+    "url": "https://bing.com/"
+  },
+  
+  
+"samples": [
+{
+  "displayName": "测试包1",
+  "description": "这是说明",
+  "path": "Samples~/Test1"
+}]
+}
