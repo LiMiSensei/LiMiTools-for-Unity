@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class CameraViewerWindow : EditorWindow
 {
-    [MenuItem("LiMi的测试/Camera Viewer")]
+    [MenuItem("LiMi/测试/Camera Viewer")]
     public static void ShowWindow()
     {
         GetWindow<CameraViewerWindow>("Camera Viewer");

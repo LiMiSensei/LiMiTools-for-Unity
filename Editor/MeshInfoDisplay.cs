@@ -15,7 +15,7 @@ public class MeshInfoDisplay
         new Dictionary<GameObject, (int, int, int, int)>();
     private static int _lastSelectionHash; // 用于检测选择变化
 
-    [MenuItem("LiMi的辅助/模型统计信息 &m")]
+    [MenuItem("LiMi/辅助/模型统计信息 &m")]
     public static void ToggleDisplay()
     {
         _showMeshInfo = !_showMeshInfo;
@@ -23,10 +23,10 @@ public class MeshInfoDisplay
         SceneView.RepaintAll();
     }
 
-    [MenuItem("LiMi的辅助/模型统计信息 &m", true)]
+    [MenuItem("LiMi/辅助/模型统计信息 &m", true)]
     private static bool ToggleDisplayValidate()
     {
-        Menu.SetChecked("LiMi的辅助/模型统计信息 &m", _showMeshInfo);
+        Menu.SetChecked("LiMi/辅助/模型统计信息 &m", _showMeshInfo);
         return true;
     }
     

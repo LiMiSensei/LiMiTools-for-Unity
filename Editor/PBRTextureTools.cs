@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 public class PBRTextureTools : EditorWindow
 {
-   [MenuItem("LiMi的工具/图像处理工具 v1.0")]
+   [MenuItem("LiMi/工具/图像处理工具 v1.0")]
    static void Open()
    {
       var window = (PBRTextureTools) GetWindow(typeof(PBRTextureTools),true,"图像处理工具v1.0");

@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 public class ShaderGraphTools : EditorWindow
 {
-    [MenuItem("LiMi的工具/ShaderGraph优化工具 v1.0")]
+    [MenuItem("LiMi/工具/ShaderGraph优化工具 v1.0")]
     static void Open()
     {
         var window = EditorWindow.GetWindow<ShaderGraphTools>();

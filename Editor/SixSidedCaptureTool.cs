@@ -21,7 +21,7 @@ public class SixSidedCaptureTool : EditorWindow
     private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>();
     private const int CAPTURE_LAYER = 31; // 使用最高层31，通常这个层不会被使用
 
-    [MenuItem("LiMi的工具/六面捕获工具 V0.1")]
+    [MenuItem("LiMi/工具/六面捕获工具 V0.1")]
     static void ShowWindow()
     {
         GetWindow<SixSidedCaptureTool>("六面捕获工具");

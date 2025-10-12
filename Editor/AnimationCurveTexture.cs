@@ -10,7 +10,7 @@ using UnityEngine;
  */
 public class AnimationCurveTexture : EditorWindow
 {
-  [MenuItem("LiMi的工具/曲线转贴图工具 V1.1")]
+  [MenuItem("LiMi/工具/曲线转贴图工具 V1.1")]
   static void OpenWindow()
   {
     var window = EditorWindow.GetWindow<AnimationCurveTexture>("曲线转贴图工具");

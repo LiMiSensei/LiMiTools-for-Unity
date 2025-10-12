@@ -17,7 +17,7 @@ public class ModelScreenshot : EditorWindow
     private Texture2D dirFrontMap;//前
     private Texture2D dirBackMap;//后
 
-    [MenuItem("LiMi的工具/截取选中模型 V0.1")]
+    [MenuItem("LiMi/工具/截取选中模型 V0.1")]
     static void Init()
     {
         var window = GetWindow(typeof(ModelScreenshot));

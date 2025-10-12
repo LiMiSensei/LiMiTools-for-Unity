@@ -8,7 +8,7 @@ public class GradientTexture : EditorWindow
 {
     
 
-    [MenuItem("LiMi的工具/渐变条工具 V1.1")]
+    [MenuItem("LiMi/工具/渐变条工具 V1.1")]
     static void Open()
     {
         var window = GetWindow<GradientTexture>("渐变图生成器");

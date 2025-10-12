@@ -5,7 +5,7 @@ using System.Linq;
 
 public class HighQueueRendererGizmo : EditorWindow
 {
-    [MenuItem("LiMi的工具/队列查看器 V0.1")]
+    [MenuItem("LiMi/工具/队列查看器 V0.1")]
     public static void ShowWindow()
     {
         GetWindow<HighQueueRendererGizmo>("队列查看器");

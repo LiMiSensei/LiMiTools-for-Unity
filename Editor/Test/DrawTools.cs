@@ -9,7 +9,7 @@ namespace Unity.FantasyKingdom
 {
     public class DrawTools : EditorWindow
     {
-        [MenuItem("LiMi的工具/绘制查看器 v0.1")]
+        [MenuItem("LiMi/工具/绘制查看器 v0.1")]
         static void Open()
         {
             GetWindow<DrawTools>("绘制查看器").Show();

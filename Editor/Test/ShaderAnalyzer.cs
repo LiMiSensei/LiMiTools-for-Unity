@@ -6,7 +6,7 @@ using System.IO;
 
 public class ShaderAnalyzer : EditorWindow
 {
-    [MenuItem("LiMi的测试/Shader分析器")]
+    [MenuItem("LiMi/测试/Shader分析器")]
     public static void ShowWindow()
     {
         GetWindow<ShaderAnalyzer>("Shader分析器");

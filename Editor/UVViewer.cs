@@ -25,7 +25,7 @@ public class UVViewer : EditorWindow
     private string debugpreview = "";
     
 
-    [MenuItem("LiMi的工具/UV查看器 V1.0")]
+    [MenuItem("LiMi/工具/UV查看器 V1.0")]
     public static void ShowWindow()
     {
         var window = GetWindow<UVViewer>();

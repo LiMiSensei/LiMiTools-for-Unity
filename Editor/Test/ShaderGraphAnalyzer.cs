@@ -6,7 +6,7 @@ using System.IO;
 
 public class ShaderGraphAnalyzer : EditorWindow
 {
-    [MenuItem("LiMi的测试/ShaderGraph使用分析")]
+    [MenuItem("LiMi/测试/ShaderGraph使用分析")]
     public static void ShowWindow()
     {
         GetWindow<ShaderGraphAnalyzer>("ShaderGraph使用分析");

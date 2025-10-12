@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 public class SubShaderEditor : EditorWindow
 {
-    [MenuItem("LiMi的工具/SubShader路径调整工具 v0.1")]
+    [MenuItem("LiMi/工具/SubShader路径调整工具 v0.1")]
     static void Init()
     {
         GetWindow<SubShaderEditor>("SubShader路径调整工具").Show();

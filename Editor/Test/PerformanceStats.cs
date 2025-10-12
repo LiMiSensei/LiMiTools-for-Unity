@@ -6,7 +6,7 @@ using System.Linq;
 
 public class PerformanceStats : EditorWindow
 {
-    [MenuItem("LiMi的测试/性能统计信息")]
+    [MenuItem("LiMi/测试/性能统计信息")]
     public static void ShowWindow()
     {
         GetWindow<PerformanceStats>("性能统计信息");
@@ -382,7 +382,7 @@ public class PerformanceStats : EditorWindow
     private int GetAnimatorComponentCount() => FindObjectsOfType<Animator>().Where(a => a.isActiveAndEnabled).Count();
 
     // 添加一个快速性能诊断的方法
-    [MenuItem("LiMi的测试/快速性能诊断")]
+    [MenuItem("LiMi/测试/快速性能诊断")]
     public static void QuickPerformanceDiagnostic()
     {
         var window = GetWindow<PerformanceStats>("性能统计信息");

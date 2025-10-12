@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShowWireframe
 {
     
-    [MenuItem("LiMi的辅助/模型辅助线 &d")]
+    [MenuItem("LiMi/辅助/模型辅助线 &d")]
     static void ToggleManual()
     {
         _enabled = !_enabled;
@@ -13,10 +13,10 @@ public class ShowWireframe
         SceneView.RepaintAll();
     }
     
-    [MenuItem("LiMi的辅助/模型辅助线 &d", true)]
+    [MenuItem("LiMi/辅助/模型辅助线 &d", true)]
     static bool ToggleManualValidate()
     {
-        Menu.SetChecked("LiMi的辅助/模型辅助线 &d", _enabled);
+        Menu.SetChecked("LiMi/辅助/模型辅助线 &d", _enabled);
         return true;
     }
     

@@ -13,7 +13,7 @@ public class TextureImportTools : EditorWindow
     private List<TextureInfo> textures = new List<TextureInfo>();
     private string statusMessage = "";
 
-    [MenuItem("LiMi的工具/图像导入设置 V0.1")]
+    [MenuItem("LiMi/工具/图像导入设置 V0.1")]
     public static void ShowWindow()
     {
         var window = GetWindow<TextureImportTools>("图像导入设置");

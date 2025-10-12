@@ -12,7 +12,7 @@ public class MaterialGPUInstancing : EditorWindow
     private bool selectAll = true; // 全选开关
     private string statusMessage = ""; // 运行状态提示
 
-    [MenuItem("LiMi的工具/启用GPU实例化 V1.0")]
+    [MenuItem("LiMi/工具/启用GPU实例化 V1.0")]
     public static void ShowWindow()
     {
         var win = GetWindow<MaterialGPUInstancing>();

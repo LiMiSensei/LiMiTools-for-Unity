@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class KeyCode : EditorWindow
 {
-    [MenuItem("LiMi的指令/创建Cube _#a")] 
+    [MenuItem("LiMi/指令/创建Cube _#a")] 
     static void CreateCube()
     {
         EditorApplication.ExecuteMenuItem("GameObject/3D Object/Cube");
     }
     
-    [MenuItem("LiMi的指令/查找材质球 _#m")] 
+    [MenuItem("LiMi/指令/查找材质球 _#m")] 
     static void FindMaterialContext()
     {
         Renderer renderer = Selection.activeGameObject.GetComponent<Renderer>();
@@ -20,7 +20,7 @@ public class KeyCode : EditorWindow
         EditorUtility.OpenPropertyEditor(renderer.sharedMaterial);
     }
     
-    [MenuItem("LiMi的指令/快速聚焦 %#m")] // Ctrl+Shift+F快捷键
+    [MenuItem("LiMi/指令/快速聚焦 %#m")] // Ctrl+Shift+F快捷键
     static void FocusObject()
     {
         if (Selection.activeTransform != null)
@@ -31,7 +31,7 @@ public class KeyCode : EditorWindow
         }
     }
     
-    [MenuItem("LiMi的指令/场景截图")]
+    [MenuItem("LiMi/指令/场景截图")]
     static void CaptureSceneView()
     {
         SceneView sceneView = SceneView.lastActiveSceneView;

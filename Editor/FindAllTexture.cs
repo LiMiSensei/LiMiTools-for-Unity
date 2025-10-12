@@ -13,7 +13,7 @@ using Object = UnityEngine.Object;
  */
 public class FindAllTexture : EditorWindow
 {
-    [MenuItem("LiMi的工具/查找所有图像 V1.1")]
+    [MenuItem("LiMi/工具/查找所有图像 V1.1")]
     static void FindAllTextureWindows()
     {
         var window = EditorWindow.GetWindow<FindAllTexture>("查找所有贴图");
