@@ -45,8 +45,6 @@ public class PBRTextureTools : EditorWindow
    bool isNormal = false;
    private Texture2D NormalTexture;
    
-   
-
    //分离图像
    bool isSplit = false;
    //Texture2D SplitTexture;
