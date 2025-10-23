@@ -48,7 +48,7 @@ public class AnimationCurveTexture : EditorWindow
     
     
     //设置长宽等
-    EditorGUILayout.BeginHorizontal();
+    EditorGUILayout.BeginHorizontal();//水平布局
     {
       EditorGUILayout.LabelField("长:",GUILayout.Width(30));
       textureSize.x = EditorGUILayout.IntField(textureSize.x);
