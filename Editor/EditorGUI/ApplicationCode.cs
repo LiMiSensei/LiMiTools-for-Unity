@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ApplicationCode : EditorWindow
 {
-    [MenuItem("ApplicationCode/ApplicationCode")]
+    [MenuItem("LiMi/测试/ApplicationCode")]
     static void Init()
     {
         ApplicationCode window = (ApplicationCode)EditorWindow.GetWindow(typeof(ApplicationCode), 

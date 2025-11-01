@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SystemInfoCode : EditorWindow
 {
-    [MenuItem("SystemInfoCode/SystemInfoCode")]
+    [MenuItem("LiMi/测试/SystemInfoCode")]
     static void Init()
     {
         SystemInfoCode window = (SystemInfoCode)EditorWindow.GetWindow(typeof(SystemInfoCode), 

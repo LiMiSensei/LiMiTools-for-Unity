@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [InitializeOnLoad]
 public class MeshInfoDisplay
 {
-    private static bool _showMeshInfo = true;
+    private static bool _showMeshInfo = false;
     private static GUIStyle _style;
     private static Vector3 _lastCameraPosition;
     private static Quaternion _lastCameraRotation;

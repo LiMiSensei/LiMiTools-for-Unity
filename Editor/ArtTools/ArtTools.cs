@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArtTools : EditorWindow
 {
-    [MenuItem("Teacg/ArtTools")]
+    [MenuItem("LiMi/测试/ArtTools")]
     public static void ShowWindow()
     {
         var window = GetWindow(typeof(ArtTools),false,"ArtTools");

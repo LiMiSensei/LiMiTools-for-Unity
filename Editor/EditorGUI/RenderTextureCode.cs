@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 public class RenderTextureCode : EditorWindow
 {
-    [MenuItem("RenderTextureCode/RenderTextureCode")]
+    [MenuItem("LiMi/测试/RenderTextureCode")]
     static void Init()
     {
         RenderTextureCode window = (RenderTextureCode)EditorWindow.GetWindow(typeof(RenderTextureCode), 
