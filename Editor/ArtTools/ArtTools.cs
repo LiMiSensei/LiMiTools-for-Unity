@@ -1,62 +1,78 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class ArtTools : EditorWindow
+namespace LiMiTools.Editor.ArtTools
 {
-    [MenuItem("LiMi/测试/ArtTools")]
-    public static void ShowWindow()
+    public class ArtTools : EditorWindow
     {
-        var window = GetWindow(typeof(ArtTools),false,"ArtTools");
-        window.Show();
-    }
+        [MenuItem("TA工具箱/ArtTools")]
+        public static void ShowWindow()
+        {
+            var window = GetWindow(typeof(ArtTools),false,"ArtTools");
+            window.Show();
+        }
 
     
 
-    #region 数据成员
-
-    string[] categoryNames = {"角色", "场景", "UI","特效","TA","其他","选中对象"};
-    int selectedCategory = 0;
-    private ArtToolsTA artToolsTA;
-    private ArtToolsActice artToolsactive;
-    private void OnEnable()
-    {
-        artToolsTA = new ArtToolsTA();
-        artToolsactive = new ArtToolsActice();
-        selectedCategory = EditorPrefs.GetInt("SelectedCategory",0);
-        //selectedCategory = EditorPrefs.HasKey("SelectedCategory")?selectedCategory = EditorPrefs.GetInt("SelectedCategory"):0;;
-    }
-    #endregion
-    void OnGUI()
-    {
-        EditorGUILayout.BeginHorizontal();
+        #region 数据成员
+    
+        private string[] _categoryNames =
         {
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(position.width*0.15f),GUILayout.ExpandHeight(true));
-            {
-                selectedCategory = GUILayout.SelectionGrid(selectedCategory,categoryNames,1);
-            }
-            EditorGUILayout.EndVertical();
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.ExpandHeight(true));
-            {
-                switch (selectedCategory)
-                {
-                    case 0: GUILayout.TextArea("角色");break;
-                    case 1: artToolsactive.Deaw();    break;
-                    case 2: break;
-                    case 3: break;  
-                    case 4: artToolsTA.Deaw();         break;
-                    case 5: break;
-                    case 6: break;
-                }
-            }
-            EditorGUILayout.EndVertical();
+            "Create Texture", "Split and Merge","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1"
+            ,"测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1"
+        };
+        private int _selectedCategory = 0;//选择部分
+        private Vector2 _scrollPos = Vector2.zero;
+        
+        private Action action;
+    
+        //其他工具指引
+        private CreateTextureTool _createTextureTool;
+        private SplitMergeTexture _splitMergeTexture;
+   
+        private void OnEnable()
+        {
+            _createTextureTool = new CreateTextureTool();
+            _splitMergeTexture = new SplitMergeTexture();
+            //存储位置
+            _selectedCategory = EditorPrefs.GetInt("SelectedCategory",0);
         }
-        EditorGUILayout.EndHorizontal();
-        GUILayout.Label("Updata:225.07.18 by:LiMi",EditorStyles.centeredGreyMiniLabel);
-    }
-
-    void OnDisable()
-    {
-        EditorPrefs.SetInt("SelectedCategory",selectedCategory);
+        void OnDisable()
+        {
+            CoreUtils.Destroy(_createTextureTool);
+            CoreUtils.Destroy(_splitMergeTexture);
+            //存储位置
+            EditorPrefs.SetInt("SelectedCategory",_selectedCategory);
+        }
+        #endregion
+        void OnGUI()
+        {
+            EditorGUILayout.BeginHorizontal();//水平布局
+            {
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(position.width*0.15f));
+                {
+                    _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
+                    {
+                        _selectedCategory = GUILayout.SelectionGrid(_selectedCategory,_categoryNames,1);
+                    }
+                    EditorGUILayout.EndScrollView();
+                }
+                EditorGUILayout.EndVertical();
+            
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.ExpandHeight(true));//垂直布局
+                {
+                    switch (_selectedCategory)
+                    {
+                        case 0: _createTextureTool.DrawGUI(); break;
+                        case 1: _splitMergeTexture.DrawGUI(); break;
+                    }
+                }
+                EditorGUILayout.EndVertical();
+            }
+            EditorGUILayout.EndHorizontal();
+            GUILayout.Label("Updata:226.01.26 by:LiMi",EditorStyles.centeredGreyMiniLabel);
+        }
     }
 }

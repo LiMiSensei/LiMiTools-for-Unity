@@ -1,23 +1,26 @@
 using UnityEditor;
 using UnityEngine;
 
-public class ArtToolsActice 
+namespace LiMiTools.Editor.ArtTools
 {
-    public void Deaw()
+    public class ArtToolsActice 
     {
-        if (GUILayout.Button("<UNK>"))
+        public void Deaw()
         {
-            GameObject go = Selection.activeGameObject;
-            Undo.RecordObject(go, "Deaw");//记录数据，并允许撤回
-            go.SetActive(!go.activeSelf);
-            go.isStatic = !go.isStatic;
-            go.layer = LayerMask.NameToLayer("Default");
-            go.tag = "Default";
-            StaticEditorFlags flags = StaticEditorFlags.ContributeGI | StaticEditorFlags.BatchingStatic;//设置静态图层
-            GameObjectUtility.SetStaticEditorFlags(go, flags);       //设置静态图层
-            var a = System.Convert.ToString(1, 2);//进制转换
-        }
+            if (GUILayout.Button("<UNK>"))
+            {
+                GameObject go = Selection.activeGameObject;
+                Undo.RecordObject(go, "Deaw");//记录数据，并允许撤回
+                go.SetActive(!go.activeSelf);
+                go.isStatic = !go.isStatic;
+                go.layer = LayerMask.NameToLayer("Default");
+                go.tag = "Default";
+                StaticEditorFlags flags = StaticEditorFlags.ContributeGI | StaticEditorFlags.BatchingStatic;//设置静态图层
+                GameObjectUtility.SetStaticEditorFlags(go, flags);       //设置静态图层
+                var a = System.Convert.ToString(1, 2);//进制转换
+            }
        
         
+        }
     }
 }

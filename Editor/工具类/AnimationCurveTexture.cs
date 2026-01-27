@@ -4,8 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-/* 可以设置 maxList 超过10（使用时这是预分配好的大小）
- * 修复：保存贴图  正常预览
+/* 
  * 
  */
 public class AnimationCurveTexture : EditorWindow
