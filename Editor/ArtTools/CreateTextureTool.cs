@@ -43,14 +43,14 @@ namespace LiMiTools.Editor.ArtTools
             
             EditorGUILayout.BeginHorizontal();//水平布局
             {
-                _selectedCategory = GUILayout.SelectionGrid(_selectedCategory,_categoryNames,2,GUILayout.Height(40));
+                _selectedCategory = GUILayout.SelectionGrid(_selectedCategory,_categoryNames,2,GUILayout.Height(40),GUILayout.MinWidth(0));
             }
             EditorGUILayout.EndHorizontal();
             
             
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             {
-                _number = EditorGUILayout.IntSlider("目标数量",_number, 1, 10);
+                _number = EditorGUILayout.IntSlider("目标数量",_number, 1, 10,GUILayout.MinWidth(0));
             }
             EditorGUILayout.EndVertical();
             
@@ -58,10 +58,8 @@ namespace LiMiTools.Editor.ArtTools
             {
                 switch (_selectedCategory)
                 {
-                    case 0: GradientGUI();
-                        ArtToolCommon.Instance.sRGB = true ; break;
-                    case 1: CurveGUI();
-                        ArtToolCommon.Instance.sRGB = false; break;
+                    case 0: GradientGUI();  break;
+                    case 1: CurveGUI(); break;
                     default: break;
                 }
                 Rect texRect = GUILayoutUtility.GetRect(1, 200);
@@ -74,12 +72,12 @@ namespace LiMiTools.Editor.ArtTools
             EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
             {
                 ArtToolCommon.Instance.TextureSize = EditorGUILayout.Vector2IntField(
-                    $"输出长宽：{ArtToolCommon.Instance.TextureSize.x} X ({ArtToolCommon.Instance.TextureSize.y} * {_number}) --> {ArtToolCommon.Instance.TextureSize.x} X {ArtToolCommon.Instance.TextureSize.y * _number}" ,ArtToolCommon.Instance.TextureSize);
+                    $"输出长宽：{ArtToolCommon.Instance.TextureSize.x} X ({ArtToolCommon.Instance.TextureSize.y} * {_number}) --> {ArtToolCommon.Instance.TextureSize.x} X {ArtToolCommon.Instance.TextureSize.y * _number}" ,ArtToolCommon.Instance.TextureSize,GUILayout.MinWidth(0));
                 
-                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(300));
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(300),GUILayout.MinWidth(0));
                 {
-                    ArtToolCommon.Instance.FilterMode = (FilterMode)EditorGUILayout.EnumPopup("图像过滤模式：",ArtToolCommon.Instance.FilterMode);
-                    ArtToolCommon.Instance.sRGB = EditorGUILayout.ToggleLeft("sRGB",ArtToolCommon.Instance.sRGB);
+                    ArtToolCommon.Instance.FilterMode = (FilterMode)EditorGUILayout.EnumPopup("图像过滤模式：",ArtToolCommon.Instance.FilterMode,GUILayout.MinWidth(0));
+                    ArtToolCommon.Instance.sRGB = EditorGUILayout.ToggleLeft("sRGB",ArtToolCommon.Instance.sRGB,GUILayout.MinWidth(10));
                 }
                 EditorGUILayout.EndVertical();
             }
@@ -89,8 +87,8 @@ namespace LiMiTools.Editor.ArtTools
             {
                 if (GUILayout.Button("选择路径")) ArtToolCommon.Instance.Path = ArtToolCore.SelectionPath();
                 ArtToolCommon.Instance.Path = EditorGUILayout.TextField(ArtToolCommon.Instance.Path);
-                EditorGUILayout.LabelField("Name:",EditorStyles.centeredGreyMiniLabel,GUILayout.Width(38));
-                _textureName = EditorGUILayout.TextField(_textureName);
+                EditorGUILayout.LabelField("Name:",EditorStyles.centeredGreyMiniLabel,GUILayout.Width(38),GUILayout.MinWidth(0));
+                _textureName = EditorGUILayout.TextField(_textureName,GUILayout.MinWidth(0));
                 if (GUILayout.Button("Save"))
                 {
                     switch (_selectedCategory)
@@ -112,7 +110,7 @@ namespace LiMiTools.Editor.ArtTools
         {
             for (int i = _number-1; i >= 0 ; i--)
             {
-                _gradient[i] = EditorGUILayout.GradientField($"渐变:{i+1}", _gradient[i],GUILayout.Height(30),GUILayout.MinWidth(10));
+                _gradient[i] = EditorGUILayout.GradientField($"渐变:{i+1}", _gradient[i],GUILayout.Height(30),GUILayout.MinWidth(0));
             }
         }
         //曲线图GUI
@@ -120,7 +118,7 @@ namespace LiMiTools.Editor.ArtTools
         {
             for (int i = _number-1; i >= 0 ; i--)
             {
-                _animationCurves[i] = EditorGUILayout.CurveField($"曲线:{i+1}",_animationCurves[i],GUILayout.Height(30));
+                _animationCurves[i] = EditorGUILayout.CurveField($"曲线:{i+1}",_animationCurves[i],GUILayout.Height(30),GUILayout.MinWidth(0));
             }
         }
         //-------------------------------------------------------------------------------------------------------------

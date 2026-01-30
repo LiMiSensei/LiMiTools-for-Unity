@@ -72,11 +72,11 @@ namespace LiMiTools.Editor.ArtTools
             
             EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
             {
-                EditorGUILayout.LabelField("", EditorStyles.centeredGreyMiniLabel);
-                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(position.width));
+                EditorGUILayout.LabelField("", EditorStyles.centeredGreyMiniLabel,GUILayout.MinWidth(10));
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(position.width),GUILayout.MinWidth(10));
                 {
-                    ArtToolCommon.Instance.FilterMode = (FilterMode)EditorGUILayout.EnumPopup("图像过滤模式：",ArtToolCommon.Instance.FilterMode);
-                    ArtToolCommon.Instance.sRGB = EditorGUILayout.ToggleLeft("sRGB",ArtToolCommon.Instance.sRGB);
+                    ArtToolCommon.Instance.FilterMode = (FilterMode)EditorGUILayout.EnumPopup("图像过滤模式：",ArtToolCommon.Instance.FilterMode,GUILayout.MinWidth(10));
+                    ArtToolCommon.Instance.sRGB = EditorGUILayout.ToggleLeft("sRGB",ArtToolCommon.Instance.sRGB,GUILayout.MinWidth(10));
                 }
                 EditorGUILayout.EndVertical();
             }
@@ -105,13 +105,13 @@ namespace LiMiTools.Editor.ArtTools
             {
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 {
-                    _textureTexs[i] = EditorGUILayout.ObjectField($"纹理：{_channel[i]}",_textureTexs[i], typeof(Texture2D), false) as Texture2D;
-                    _channelPos[i] = GUILayout.SelectionGrid(_channelPos[i],_channel,1);
+                    _textureTexs[i] = EditorGUILayout.ObjectField("",_textureTexs[i], typeof(Texture2D), false,GUILayout.MinWidth(10)) as Texture2D;
+                    _channelPos[i] = GUILayout.SelectionGrid(_channelPos[i],_channel,1,GUILayout.MinWidth(10));
                     EditorGUILayout.BeginHorizontal();
                     {
-                        EditorGUILayout.LabelField("反转",GUILayout.Width(25));
-                        _isInversion[i] = EditorGUILayout.Toggle(_isInversion[i],GUI.skin.button,GUILayout.Width(25));
-                        if (GUILayout.Button("直接拆分"))
+                        EditorGUILayout.LabelField("反转",GUILayout.Width(25),GUILayout.MinWidth(10));
+                        _isInversion[i] = EditorGUILayout.Toggle(_isInversion[i],GUI.skin.button,GUILayout.Width(25),GUILayout.MinWidth(10));
+                        if (GUILayout.Button("直接拆分",GUILayout.MinWidth(10)))
                         {
                             if (_textureTexs[i] != null)
                                 ArtToolCore.SaveTexture(TextureSplit(_textureTexs[i],i),$"{_textureName}_{i}",ArtToolCommon.Instance.Path);
@@ -130,7 +130,7 @@ namespace LiMiTools.Editor.ArtTools
             
             EditorGUILayout.BeginHorizontal();
             {
-                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(position.width));
+                EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.Width(position.width),GUILayout.MinWidth(10));
                 {
                     Rect texRect = GUILayoutUtility.GetRect(1, position.width);
                     if(Previewtexture != null)EditorGUI.DrawPreviewTexture(texRect,Previewtexture);
@@ -154,11 +154,11 @@ namespace LiMiTools.Editor.ArtTools
                     //三按钮
                     EditorGUILayout.BeginHorizontal(EditorStyles.helpBox,GUILayout.Height(50));
                     {
-                        if (GUILayout.Button("上推RGBA↑↑↑↑",GUILayout.ExpandHeight(true)))
+                        if (GUILayout.Button("上推RGBA↑↑↑↑",GUILayout.ExpandHeight(true),GUILayout.MinWidth(10)))
                         {
                             Array.Copy(_channelTexs,_textureTexs,_channelPos.Length);//防止引用类型
                         }
-                        if (GUILayout.Button("上推纹理 ↑",GUILayout.ExpandHeight(true)))
+                        if (GUILayout.Button("上推纹理 ↑",GUILayout.ExpandHeight(true),GUILayout.MinWidth(10)))
                         {
                             for (int i = 0; i < _channelTexs.Length; i++)
                             {
@@ -169,7 +169,7 @@ namespace LiMiTools.Editor.ArtTools
                     }
                     EditorGUILayout.EndHorizontal();
                     
-                    if(GUILayout.Button("合并↓"))
+                    if(GUILayout.Button("合并↓",GUILayout.MinWidth(10)))
                     {
                         Previewtexture = TextureMerge(_textureTexs);
                     }
@@ -179,21 +179,21 @@ namespace LiMiTools.Editor.ArtTools
                     var vector2ints = new Vector2Int((int)Mathf.Log(ArtToolCommon.Instance.TextureSizeGPU.x, 2), (int)Mathf.Log(ArtToolCommon.Instance.TextureSizeGPU.y, 2));
                     EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
                     {
-                        GUILayout.Label("长(次幂)",GUILayout.Width(60));
+                        GUILayout.Label("长(次幂)",GUILayout.Width(60),GUILayout.MinWidth(10));
                         vector2ints.x = EditorGUILayout.IntSlider(vector2ints.x,0,12);
                     }
                     EditorGUILayout.EndHorizontal();
                     
                     EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
                     {
-                        GUILayout.Label("宽(次幂)",GUILayout.Width(60));
+                        GUILayout.Label("宽(次幂)",GUILayout.Width(60),GUILayout.MinWidth(10));
                         vector2ints.y = EditorGUILayout.IntSlider(vector2ints.y,0,12);
                     }
                     EditorGUILayout.EndHorizontal();
                     ArtToolCommon.Instance.TextureSizeGPU = new Vector2Int((int)Mathf.Pow(2,vector2ints.x),(int)Mathf.Pow(2,vector2ints.y));
                     
-                    debug = EditorGUILayout.Slider(debug,0f,2);
-                    EditorGUILayout.LabelField($"大小为：{ArtToolCommon.Instance.TextureSizeGPU.x} * {ArtToolCommon.Instance.TextureSizeGPU.y}");
+                    debug = EditorGUILayout.Slider(debug,0f,2,GUILayout.MinWidth(10));
+                    EditorGUILayout.LabelField($"大小为：{ArtToolCommon.Instance.TextureSizeGPU.x} * {ArtToolCommon.Instance.TextureSizeGPU.y}",GUILayout.MinWidth(10));
 
                 }
                 EditorGUILayout.EndVertical();

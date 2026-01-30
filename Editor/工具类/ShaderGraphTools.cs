@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class ShaderGraphTools : EditorWindow
+public partial class ShaderGraphTools : EditorWindow
 {
     [MenuItem("LiMi/工具/ShaderGraph优化工具 v1.0")]
     static void Open()

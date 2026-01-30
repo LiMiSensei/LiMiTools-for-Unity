@@ -1,6 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
+
 // 存放实现方法，不存放变量或者其他数据
 //
 
@@ -68,7 +72,8 @@ namespace LiMiTools.Editor.ArtTools
             //ping
             Object obj = AssetDatabase.LoadAssetAtPath(fullPath, typeof(Object));
             TextureImporter importer = AssetImporter.GetAtPath(fullPath) as TextureImporter;
-            importer.filterMode = ArtToolCommon.Instance.FilterMode;;
+            importer.filterMode = ArtToolCommon.Instance.FilterMode;
+            importer.sRGBTexture = ArtToolCommon.Instance.sRGB;
             importer.SaveAndReimport();
             EditorGUIUtility.PingObject(obj);
         }
@@ -101,6 +106,65 @@ namespace LiMiTools.Editor.ArtTools
             {
                 if (rt != null)
                     RenderTexture.ReleaseTemporary(rt);
+            }
+        }
+        //系统目录转到Unity目录方法
+        public  static string SystemToUnityPath(string systemPath)
+        {
+            if (systemPath == null) return null;
+            
+            var t_systemPath = systemPath.Replace('\\', '/');                                        //反斜杠换成正斜杆
+            var projectPath = Application.dataPath.Replace("Assets", "").Replace('\\', '/');   //项目目录
+            var unityPath = t_systemPath.Replace(projectPath, "");                             //系统目录 - 项目目录
+            return unityPath;
+        }
+        
+        public static void DrawGrid(float gridSpacing, float gridOpacity,Rect position, Color gridColor)
+        {
+            int widthDivs = Mathf.CeilToInt(position.width / gridSpacing);
+            int heightDivs = Mathf.CeilToInt(position.height / gridSpacing);
+    
+            Handles.BeginGUI();
+            Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
+            for (int x = 0; x < widthDivs; x++)
+            {
+                Handles.DrawLine(
+                    new Vector3(gridSpacing * x, 0, 0),
+                    new Vector3(gridSpacing * x, position.height, 0));
+            }
+            for (int y = 0; y < heightDivs; y++)
+            {
+                Handles.DrawLine(
+                    new Vector3(0, gridSpacing * y, 0),
+                    new Vector3(position.width, gridSpacing * y, 0));
+            }
+            Handles.color = Color.white;
+            Handles.EndGUI();
+        }
+
+
+        public static class EditorPrefs
+        {
+            public static string[] GetStringArray(string key,string[] value)
+            {
+                List<string> result = new List<string>();
+                int i = 0;
+                while (UnityEditor.EditorPrefs.HasKey($"{key}_{i}"))
+                {
+                    result.Add(UnityEditor.EditorPrefs.GetString($"{key}_{i}"));
+                    i++;
+                }
+                string[] array = new string[result.Count];
+                result.CopyTo(array);
+                return array;
+            }
+            public static void SetStringArray(string key,string[] value)
+            {
+                for (int i = 0; i < value.Length; i++)
+                {
+                    UnityEditor.EditorPrefs.SetString($"{key}_{i}",value[i]);
+                }
+                
             }
         }
     }

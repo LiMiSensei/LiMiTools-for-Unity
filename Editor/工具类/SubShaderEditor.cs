@@ -142,7 +142,6 @@ public class SubShaderEditor : EditorWindow
                 Console.WriteLine($"妈的有报错,第{i}的{Path.GetFileNameWithoutExtension(subShadersPath[i])}");
                 throw;
             }
-            
         }
     }
     //解析JSON的方法

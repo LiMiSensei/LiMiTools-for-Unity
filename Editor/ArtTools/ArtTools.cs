@@ -17,34 +17,55 @@ namespace LiMiTools.Editor.ArtTools
     
 
         #region 数据成员
-    
-        private string[] _categoryNames =
+
+        enum ToolsName
         {
-            "Create Texture", "Split and Merge","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1"
-            ,"测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1","测试1"
-        };
-        private int _selectedCategory = 0;//选择部分
-        private Vector2 _scrollPos = Vector2.zero;
+            CreateTexture,
+            SplitMergeTexture,
+            ShaderGraphTools,
+            MaterialTools,
+            
+            TakeNotes,
+            FlowMapBursh,
+            UVView,
+            DebugWindow,
+            About,
+        }
+        ToolsName toolsName = ToolsName.CreateTexture;
+        private string[] _categoryNames;
         
+        
+        
+        private Vector2 _scrollPos = Vector2.zero;
         private Action action;
     
         //其他工具指引
         private CreateTextureTool _createTextureTool;
         private SplitMergeTexture _splitMergeTexture;
-   
+        private DebugWindow _debugWindow;
+        private ShaderGraphTools _shaderGraphTools;
+        private TakeNotes _takeNotes;
         private void OnEnable()
         {
-            _createTextureTool = new CreateTextureTool();
-            _splitMergeTexture = new SplitMergeTexture();
+            _categoryNames = Enum.GetNames(typeof(ToolsName));
+            
+            _createTextureTool = ScriptableObject.CreateInstance<CreateTextureTool>();
+            _splitMergeTexture = ScriptableObject.CreateInstance<SplitMergeTexture>();
+            _debugWindow       = ScriptableObject.CreateInstance<DebugWindow>();
+            _shaderGraphTools  = ScriptableObject.CreateInstance<ShaderGraphTools>();
+            _takeNotes         = ScriptableObject.CreateInstance<TakeNotes>();
             //存储位置
-            _selectedCategory = EditorPrefs.GetInt("SelectedCategory",0);
+            toolsName = (ToolsName)EditorPrefs.GetInt("SelectedCategory",0);
         }
         void OnDisable()
         {
             CoreUtils.Destroy(_createTextureTool);
             CoreUtils.Destroy(_splitMergeTexture);
+            CoreUtils.Destroy(_debugWindow);
+            CoreUtils.Destroy(_shaderGraphTools);
+            CoreUtils.Destroy(_takeNotes);
             //存储位置
-            EditorPrefs.SetInt("SelectedCategory",_selectedCategory);
+            EditorPrefs.SetInt("SelectedCategory",(int)toolsName);
         }
         #endregion
         void OnGUI()
@@ -55,7 +76,7 @@ namespace LiMiTools.Editor.ArtTools
                 {
                     _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
                     {
-                        _selectedCategory = GUILayout.SelectionGrid(_selectedCategory,_categoryNames,1);
+                        toolsName = (ToolsName)GUILayout.SelectionGrid((int)toolsName,_categoryNames,1);
                     }
                     EditorGUILayout.EndScrollView();
                 }
@@ -63,10 +84,20 @@ namespace LiMiTools.Editor.ArtTools
             
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox,GUILayout.ExpandHeight(true));//垂直布局
                 {
-                    switch (_selectedCategory)
+                    switch (toolsName)
                     {
-                        case 0: _createTextureTool.DrawGUI(); break;
-                        case 1: _splitMergeTexture.DrawGUI(); break;
+                        case ToolsName.CreateTexture     : _createTextureTool.DrawGUI();break;
+                        case ToolsName.SplitMergeTexture : _splitMergeTexture.DrawGUI();break;
+                        case ToolsName.ShaderGraphTools  : _shaderGraphTools .DrawGUI();break;
+                        case ToolsName.MaterialTools     :                              break;
+                        
+                      
+                        case ToolsName.DebugWindow       :       _debugWindow.DrawGUI();break;
+                        case ToolsName.TakeNotes         :         _takeNotes.DrawGUI();break;
+                        case ToolsName.FlowMapBursh      :                              break;
+                        case ToolsName.UVView            :                              break;
+                        case ToolsName.About             :                              break;
+                        
                     }
                 }
                 EditorGUILayout.EndVertical();
