@@ -5,8 +5,11 @@ namespace LiMiTools.Editor.ArtTools
 {
     public sealed class ArtToolCommon
     {
+        
         //报错信息
         public string Message = "";
+        //图像覆盖模式
+        public bool isCovering = false;
         //图像过滤模式
         public FilterMode FilterMode = FilterMode.Bilinear;
         //sRGB

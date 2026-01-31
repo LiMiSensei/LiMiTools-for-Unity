@@ -64,7 +64,8 @@ namespace LiMiTools.Editor.ArtTools
             }
             //写入纹理
             byte[] pngData = texture.EncodeToPNG();
-            string fullPath = System.IO.Path.Combine(path,name+".png");
+            string fullPath = $"{path}/{name}.png";
+            if(!ArtToolCommon.Instance.isCovering)fullPath = AssetDatabase.GenerateUniqueAssetPath(fullPath);
             File.WriteAllBytes(fullPath, pngData);
             //刷新资产
             AssetDatabase.Refresh();

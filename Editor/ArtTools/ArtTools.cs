@@ -24,7 +24,7 @@ namespace LiMiTools.Editor.ArtTools
             SplitMergeTexture,
             ShaderGraphTools,
             MaterialTools,
-            
+            PackagAssets,
             TakeNotes,
             FlowMapBursh,
             UVView,
@@ -45,6 +45,7 @@ namespace LiMiTools.Editor.ArtTools
         private DebugWindow _debugWindow;
         private ShaderGraphTools _shaderGraphTools;
         private TakeNotes _takeNotes;
+        private PackagAssets _packagAssets;
         private void OnEnable()
         {
             _categoryNames = Enum.GetNames(typeof(ToolsName));
@@ -54,6 +55,7 @@ namespace LiMiTools.Editor.ArtTools
             _debugWindow       = ScriptableObject.CreateInstance<DebugWindow>();
             _shaderGraphTools  = ScriptableObject.CreateInstance<ShaderGraphTools>();
             _takeNotes         = ScriptableObject.CreateInstance<TakeNotes>();
+            _packagAssets      = ScriptableObject.CreateInstance<PackagAssets>();
             //存储位置
             toolsName = (ToolsName)EditorPrefs.GetInt("SelectedCategory",0);
         }
@@ -64,6 +66,7 @@ namespace LiMiTools.Editor.ArtTools
             CoreUtils.Destroy(_debugWindow);
             CoreUtils.Destroy(_shaderGraphTools);
             CoreUtils.Destroy(_takeNotes);
+            CoreUtils.Destroy(_packagAssets);
             //存储位置
             EditorPrefs.SetInt("SelectedCategory",(int)toolsName);
         }
@@ -90,6 +93,7 @@ namespace LiMiTools.Editor.ArtTools
                         case ToolsName.SplitMergeTexture : _splitMergeTexture.DrawGUI();break;
                         case ToolsName.ShaderGraphTools  : _shaderGraphTools .DrawGUI();break;
                         case ToolsName.MaterialTools     :                              break;
+                        case ToolsName.PackagAssets      :      _packagAssets.DrawGUI();break;
                         
                       
                         case ToolsName.DebugWindow       :       _debugWindow.DrawGUI();break;
